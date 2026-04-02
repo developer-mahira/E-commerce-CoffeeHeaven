@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Coffee Haven — Premium Coffee Shop</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="saas.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ -->
+<!--  NAVBAR                               -->
+<!-- ══════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg" id="navbar">
+  <div class="container-fluid nav-inner">
+    <a class="navbar-brand" href="#" id="logo">
+      <img src="assets/coffee%20png.png" alt="Coffee Haven" onerror="this.style.display='none'">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <i class="fa-solid fa-bars" style="color:white; font-size:20px;"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Our Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        <li class="nav-item">
+          <a class="nav-link admin-link" href="#" onclick="Admin.open(); return false;">
+            <i class="fa-solid fa-shield-halved"></i> Admin
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="navSearchInput" placeholder="Search coffee...">
+        </div>
+
+        <!-- Cart button -->
+        <button class="nav-icon-btn" onclick="Cart.openSidebar()" title="Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+        </button>
+
+        <!-- Auth button (guest) -->
+        <button class="nav-auth-btn" id="authBtn" onclick="Auth.showAuthModal('login')">
+          <i class="fa-solid fa-user"></i> Sign In
+        </button>
+
+        <!-- Profile button (logged in) -->
+        <button class="nav-profile-btn" id="profileBtn" onclick="Auth.showProfile()" style="display:none;">
+          <span class="user-initial">U</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ -->
+<!--  HERO SECTION                         -->
+<!-- ══════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-overlay"></div>
+  <div class="content">
+    <p class="hero-eyebrow">☕ Freshly Brewed Daily</p>
+    <h2>Coffee Haven</h2>
+    <h3>Start Your Day with<br>Fresh Coffee</h3>
+    <p class="hero-tagline">"Brewed to Perfection — One Sip, Endless Comfort."</p>
+    <div class="hero-btns">
+      <button id="btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Order Now</button>
+      <button class="hero-outline-btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>10K+</strong><span>Happy Customers</span></div>
+      <div class="hero-stat"><strong>50+</strong><span>Coffee Varieties</span></div>
+      <div class="hero-stat"><strong>4.9★</strong><span>Average Rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  TOP CATEGORIES                       -->
+<!-- ══════════════════════════════════════ -->
+<section id="top-cards">
+  <div class="heading">Top <span>Categories</span></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 py-0 py-md-0">
+        <div class="card cat-card" onclick="Products.setCategory('espresso'); document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/espresso.jpg" alt="Espresso" onerror="this.src='assets/coffee%20png.png'">
+          <div class="cat-label">Espresso Classics</div>
+        </div>
+      </div>
+      <div class="col-md-4 py-0 py-md-0">
+        <div class="card cat-card" onclick="Products.setCategory('latte'); document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/cafe-latte.png" alt="Lattes" onerror="this.src='assets/coffee%20png.png'">
+          <div class="cat-label">Lattes & Milky</div>
+        </div>
+      </div>
+      <div class="col-md-4 py-0 py-md-0">
+        <div class="card cat-card" onclick="Products.setCategory('all'); document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+          <img src="assets/flat%20white.jpg" alt="All Coffee" onerror="this.src='assets/coffee%20png.png'">
+          <div class="cat-label">All Coffee</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  ABOUT SECTION                        -->
+<!-- ══════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="heading">About <span>Us</span></div>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="about-img-wrap">
+          <img src="assets/Free-Coffee-HD-image-Ai-Generated-Graphics-94843572-1.jpg" alt="About Coffee Haven" onerror="this.src='assets/coffee%20png.png'">
+          <div class="about-badge"><strong>Since</strong> 2019</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3>What Makes Our Coffee Special?</h3>
+        <p>At Coffee Haven, we believe great coffee starts with passion and ends with perfection. From selecting premium beans sourced from trusted farms to roasting them in small batches for maximum freshness.</p>
+        <br>
+        <p>Quality beans, rich flavor, and a cozy vibe — that's what makes our coffee special.</p>
+        <div class="about-features">
+          <div class="about-feature"><i class="fa-solid fa-seedling"></i><span>Single-Origin Beans</span></div>
+          <div class="about-feature"><i class="fa-solid fa-fire"></i><span>Small-Batch Roasted</span></div>
+          <div class="about-feature"><i class="fa-solid fa-leaf"></i><span>Eco-Friendly</span></div>
+          <div class="about-feature"><i class="fa-solid fa-award"></i><span>Award-Winning</span></div>
+        </div>
+        <button id="about-btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  MENU / PRODUCT CATALOG              -->
+<!-- ══════════════════════════════════════ -->
+<section id="menu">
+  <div class="container">
+    <div class="heading">Our <span>Menu</span></div>
+    <p class="section-sub">Handcrafted drinks made with love. Choose your perfect brew.</p>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-cats">
+        <button class="filter-cat-btn active" data-cat="all" onclick="Products.setCategory('all')">All</button>
+        <button class="filter-cat-btn" data-cat="espresso" onclick="Products.setCategory('espresso')">Espresso</button>
+        <button class="filter-cat-btn" data-cat="latte" onclick="Products.setCategory('latte')">Latte</button>
+        <button class="filter-cat-btn" data-cat="cold" onclick="Products.setCategory('cold')">Cold Brew</button>
+        <button class="filter-cat-btn" data-cat="seasonal" onclick="Products.setCategory('seasonal')">Seasonal</button>
+      </div>
+      <div class="filter-controls">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="catalogSearch" placeholder="Search drinks...">
+        </div>
+        <select class="filter-select" onchange="Products.setSort(this.value)">
+          <option value="default">Sort: Default</option>
+          <option value="low">Price: Low → High</option>
+          <option value="high">Price: High → Low</option>
+          <option value="rating">Top Rated</option>
+          <option value="popular">Most Popular</option>
+        </select>
+        <select class="filter-select" onchange="Products.setRating(this.value)">
+          <option value="0">All Ratings</option>
+          <option value="4">4★ & above</option>
+          <option value="4.5">4.5★ & above</option>
+        </select>
+        <span class="result-count" id="resultCount">6 products</span>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  GALLERY SECTION                      -->
+<!-- ══════════════════════════════════════ -->
+<div class="container" id="gallery">
+  <div class="heading">Our <span>Gallery</span></div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="assets/Untitled%20design%20(9).png" alt="" onerror="this.style.display='none'"><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
+    <div class="gallery-item"><img src="assets/Untitled design (11).png" alt="" onerror="this.style.display='none'"><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
+    <div class="gallery-item"><img src="assets/Untitled design (14).png" alt="" onerror="this.style.display='none'"><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
+    <div class="gallery-item"><img src="assets/Untitled design (15).png" alt="" onerror="this.style.display='none'"><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
+    <div class="gallery-item"><img src="assets/Untitled design (16).png" alt="" onerror="this.style.display='none'"><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
+    <div class="gallery-item"><img src="assets/Untitleddesign.png" alt="" onerror="this.style.display='none'"><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!--  CONTACT SECTION                      -->
+<!-- ══════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="heading">Contact <span>Us</span></div>
+        <p>We're here to help! Whether you have a question about our coffee, want to give feedback, or just want to say hello — we'd love to hear from you.</p>
+        <input type="text" placeholder="Your Name" class="form-control mb-3">
+        <input type="email" placeholder="Your Email" class="form-control mb-3">
+        <input type="number" placeholder="Your Phone" class="form-control mb-3">
+        <textarea placeholder="Your Message" class="form-control mb-3" rows="3"></textarea>
+        <button id="contact-btn" onclick="Toast.show('Message sent! We\'ll reply soon ☕', 'success')">Send Message</button>
+      </div>
+      <div class="col-md-5" id="col">
+        <h1>Info</h1>
+        <p><i class="fa-regular fa-envelope"></i> example@gmail.com</p>
+        <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+        <p><i class="fa-solid fa-location-dot"></i> Karachi, Sindh, Pakistan</p>
+        <p><i class="fa-solid fa-clock"></i> Mon–Sun: 7AM – 11PM</p>
+        <p class="contact-footer-note">Get in Touch — For inquiries, orders, or general info, feel free to contact us anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  BLOG SECTION                         -->
+<!-- ══════════════════════════════════════ -->
+<section id="blog">
+  <div class="heading">Latest <span>Blog</span></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="blog-card">
+          <img src="assets/Untitled%20design%20(17).png" alt="" onerror="this.style.display='none'">
+          <div class="blog-body">
+            <span class="blog-tag">Brewing Tips</span>
+            <h3>The Art of the Perfect Espresso Shot</h3>
+            <h5><i class="fa-solid fa-user"></i> Admin &nbsp;|&nbsp; <i class="fa-regular fa-calendar"></i> July 24, 2025</h5>
+            <p>Master the variables behind a perfect espresso — grind size, tamping pressure, extraction time, and the golden ratio.</p>
+            <button id="blog-btn" onclick="Toast.show('Blog coming soon! ☕', 'info')">Read More</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="blog-card">
+          <img src="assets/Untitled%20design%20(18).png" alt="" onerror="this.style.display='none'">
+          <div class="blog-body">
+            <span class="blog-tag">Coffee Culture</span>
+            <h3>Why Single-Origin Beans Matter</h3>
+            <h5><i class="fa-solid fa-user"></i> Admin &nbsp;|&nbsp; <i class="fa-regular fa-calendar"></i> July 18, 2025</h5>
+            <p>Explore how the origin of your coffee bean shapes the flavor, aroma, and story behind every cup you brew.</p>
+            <button id="blog-btn" onclick="Toast.show('Blog coming soon! ☕', 'info')">Read More</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="blog-card">
+          <img src="assets/Untitled%20design%20(19).png" alt="" onerror="this.style.display='none'">
+          <div class="blog-body">
+            <span class="blog-tag">Lifestyle</span>
+            <h3>Coffee and Mindfulness: A Morning Ritual</h3>
+            <h5><i class="fa-solid fa-user"></i> Admin &nbsp;|&nbsp; <i class="fa-regular fa-calendar"></i> July 10, 2025</h5>
+            <p>Transform your morning coffee routine into a mindful ritual that sets the tone for a focused, peaceful day ahead.</p>
+            <button id="blog-btn" onclick="Toast.show('Blog coming soon! ☕', 'info')">Read More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  FOOTER                               -->
+<!-- ══════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-logo text-center">
+    <img src="assets/coffee%20png.png" alt="Coffee Haven" onerror="this.style.display='none'">
+    <p class="footer-tagline">Brewed with ❤️ in Karachi</p>
+  </div>
+  <div class="social-links text-center">
+    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+  </div>
+  <p class="footer-copy">Created by Mahira Noor © 2025 Coffee Haven. All rights reserved.</p>
+</footer>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  CART SIDEBAR                         -->
+<!-- ══════════════════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+    <button class="cart-close" onclick="Cart.closeSidebar()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-body" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <strong id="cartTotal">$0.00</strong>
+    </div>
+    <button class="checkout-btn" onclick="Cart.closeSidebar(); Checkout.open()">
+      <i class="fa-solid fa-lock"></i> Proceed to Checkout
+    </button>
+    <button class="clear-cart-btn" onclick="Cart.clear()">Clear Cart</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  TOAST CONTAINER                      -->
+<!-- ══════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  MODAL: AUTH                          -->
+<!-- ══════════════════════════════════════ -->
+<div class="modal" id="authModal">
+  <div class="modal-box modal-sm">
+    <button class="modal-close" onclick="Modal.close('authModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-brand"><i class="fa-solid fa-mug-hot"></i> Coffee Haven</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button>
+      <button class="auth-tab" data-tab="register" onclick="Auth.switchTab('register')">Register</button>
+    </div>
+    <!-- Login Form -->
+    <form class="auth-form active" id="loginFormEl">
+        <h3>Welcome back ☕</h3>
+        <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Email address" required>
+        <input type="password" id="loginPass" class="form-control mb-3" placeholder="Password" required>
+        <button type="submit" class="add-to-cart-btn w-100">Login</button>
+      <p class="auth-switch">Don't have an account? <a href="#" onclick="Auth.switchTab('register')">Register</a></p>
+    </form>
+    <!-- Register Form -->
+    <form class="auth-form" id="registerFormEl">
+        <h3>Create Account ☕</h3>
+        <input type="text" id="regName" class="form-control mb-3" placeholder="Full name" required>
+        <input type="email" id="regEmail" class="form-control mb-3" placeholder="Email address" required>
+        <input type="password" id="regPass" class="form-control mb-3" placeholder="Password (min 6 chars)" required minlength="6">
+        <button type="submit" class="add-to-cart-btn w-100">Create Account</button>
+      <p class="auth-switch">Already have an account? <a href="#" onclick="Auth.switchTab('login')">Login</a></p>
+    </form>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  MODAL: PROFILE                       -->
+<!-- ══════════════════════════════════════ -->
+<div class="modal" id="profileModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="Modal.close('profileModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div id="profileContent"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  MODAL: PRODUCT DETAIL                -->
+<!-- ══════════════════════════════════════ -->
+<div class="modal" id="productDetailModal">
+  <div class="modal-box modal-wide">
+    <button class="modal-close" onclick="Modal.close('productDetailModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="product-detail-layout" id="productDetailContent"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  MODAL: CHECKOUT                      -->
+<!-- ══════════════════════════════════════ -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-box modal-wide">
+    <button class="modal-close" onclick="Modal.close('checkoutModal')"><i class="fa-solid fa-xmark"></i></button>
+    <h2 class="checkout-title"><i class="fa-solid fa-lock"></i> Secure Checkout</h2>
+
+    <!-- Step Indicators -->
+    <div class="checkout-steps">
+      <div class="checkout-step-indicator active" data-step="1">
+        <div class="step-circle">1</div><span>Shipping</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="checkout-step-indicator" data-step="2">
+        <div class="step-circle">2</div><span>Payment</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="checkout-step-indicator" data-step="3">
+        <div class="step-circle">3</div><span>Review</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="checkout-step-indicator" data-step="4">
+        <div class="step-circle">4</div><span>Confirmed</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Shipping -->
+    <div class="checkout-step-pane active" id="checkoutStep1">
+      <h4>Shipping Information</h4>
+      <div class="checkout-form-grid">
+        <input type="text" id="shippingName" class="form-control" placeholder="Full Name">
+        <input type="email" id="shippingEmail" class="form-control" placeholder="Email Address">
+        <input type="text" id="shippingAddress" class="form-control" placeholder="Street Address" style="grid-column:1/-1">
+        <input type="text" id="shippingCity" class="form-control" placeholder="City">
+        <input type="tel" id="shippingPhone" class="form-control" placeholder="Phone Number">
+      </div>
+      <div class="checkout-nav"><button class="add-to-cart-btn" onclick="Checkout.next()">Next: Payment <i class="fa-solid fa-arrow-right"></i></button></div>
+    </div>
+
+    <!-- Step 2: Payment -->
+    <div class="checkout-step-pane" id="checkoutStep2">
+      <h4>Payment Method</h4>
+      <div class="payment-methods">
+        <label class="pay-method-card">
+          <input type="radio" name="payMethod" value="card" onchange="togglePaymentFields()">
+          <div class="pay-method-body">
+            <i class="fa-solid fa-credit-card"></i>
+            <span>Credit / Debit Card</span>
+          </div>
+        </label>
+        <label class="pay-method-card">
+          <input type="radio" name="payMethod" value="cod" onchange="togglePaymentFields()">
+          <div class="pay-method-body">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span>Cash on Delivery</span>
+          </div>
+        </label>
+        <label class="pay-method-card">
+          <input type="radio" name="payMethod" value="easypaisa" onchange="togglePaymentFields()">
+          <div class="pay-method-body">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <span>EasyPaisa / JazzCash</span>
+          </div>
+        </label>
+      </div>
+      <div id="cardFields" style="display:none; margin-top:16px;">
+        <input type="text" id="cardNumber" class="form-control mb-3" placeholder="Card Number (16 digits)" maxlength="19" oninput="formatCardNumber(this)">
+        <div class="row">
+          <div class="col-6"><input type="text" id="cardExpiry" class="form-control mb-3" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"></div>
+          <div class="col-6"><input type="text" id="cardCvv" class="form-control mb-3" placeholder="CVV" maxlength="3"></div>
+        </div>
+      </div>
+      <div class="checkout-nav">
+        <button class="admin-cancel-btn" onclick="Checkout.prev()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <button class="add-to-cart-btn" onclick="Checkout.next()">Review Order <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Step 3: Review -->
+    <div class="checkout-step-pane" id="checkoutStep3">
+      <h4>Order Review</h4>
+      <div id="orderSummaryItems"></div>
+      <div class="checkout-nav">
+        <button class="admin-cancel-btn" onclick="Checkout.prev()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <button class="place-order-btn" onclick="Checkout.placeOrder()">
+          <i class="fa-solid fa-check"></i> Place Order — <span id="confirmTotal">$0.00</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+    <div class="checkout-step-pane" id="checkoutStep4">
+      <div id="confirmationContent"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  MODAL: ADMIN DASHBOARD               -->
+<!-- ══════════════════════════════════════ -->
+<div class="modal" id="adminModal">
+  <div class="modal-box modal-full">
+    <button class="modal-close" onclick="Modal.close('adminModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div id="adminContent"></div>
+  </div>
+</div>
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/products.js"></script>
+<script src="js/checkout.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/UI.js"></script>
+</body>
+</html>
