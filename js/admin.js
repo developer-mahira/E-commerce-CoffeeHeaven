@@ -256,23 +256,32 @@ const Admin = {
           <button class="admin-add-btn" onclick="Admin.showProductForm()"><i class="fa-solid fa-plus"></i> Add Product</button>
         </div>
         <div id="adminProductForm" class="admin-form hidden"></div>
-        <table class="admin-table">
-          <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
-          <tbody>
-            ${products.map(product => `
-              <tr>
-                <td>${App.imgTag(product.img, product.name)}${product.name}</td>
-                <td>${product.category}</td>
-                <td>$${product.price.toFixed(2)}</td>
-                <td><span class="stock-badge ${product.stock < 10 ? 'low' : 'ok'}">${product.stock}</span></td>
-                <td>
-                  <button class="admin-edit-btn" onclick="Admin.editProduct('${product.id}')"><i class="fa-solid fa-pen"></i></button>
-                  <button class="admin-del-btn" onclick="Admin.deleteProduct('${product.id}')"><i class="fa-solid fa-trash"></i></button>
-                </td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+            <tbody>
+              ${products.map(product => `
+                <tr>
+                  <td data-label="Name">
+                    <div class="admin-product-cell">
+                      ${App.imgTag(product.img, product.name)}
+                      <span>${product.name}</span>
+                    </div>
+                  </td>
+                  <td data-label="Category">${product.category}</td>
+                  <td data-label="Price">$${product.price.toFixed(2)}</td>
+                  <td data-label="Stock"><span class="stock-badge ${product.stock < 10 ? 'low' : 'ok'}">${product.stock}</span></td>
+                  <td data-label="Actions">
+                    <div class="admin-table-actions">
+                      <button class="admin-edit-btn" onclick="Admin.editProduct('${product.id}')"><i class="fa-solid fa-pen"></i></button>
+                      <button class="admin-del-btn" onclick="Admin.deleteProduct('${product.id}')"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
       </div>
     `;
   },
